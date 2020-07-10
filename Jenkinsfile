@@ -15,7 +15,7 @@ pipeline {
             steps{
 		    
                 withCredentials([string(credentialsId: 'suizhidaidev', variable: 'dockerhubPwd')]) {
-                    sh "docker login -u admin -p ${dockerhubPwd} "
+                    sh "docker login -u suizhidaidev -p ${dockerhubPwd} "
                     sh "docker push ${IMAGE_URL_WITH_TAG}"
                 }
             }

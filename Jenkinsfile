@@ -3,7 +3,7 @@ pipeline {
     environment{
         DOCKER_TAG = getDockerTag()
         NEXUS_URL  = "172.31.34.232:8080"
-        IMAGE_URL_WITH_TAG = "${NEXUS_URL}/node-app:${DOCKER_TAG}"
+        IMAGE_URL_WITH_TAG = "suizhidaidev/node-app:${DOCKER_TAG}"
     }
     stages{
         stage('Build Docker Image'){

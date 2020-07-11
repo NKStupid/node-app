@@ -20,7 +20,7 @@ pipeline {
                 }
             }
         }
-        stage('Docker Deploy Dev'){
+        /* stage('Docker Deploy Dev'){
             steps{
                 sshagent(['tomcat-dev']) {
                     withCredentials([string(credentialsId: 'nexus-pwd', variable: 'nexusPwd')]) {
@@ -32,7 +32,7 @@ pipeline {
                     sh "ssh ec2-user@172.31.0.38 docker run -d -p 8080:8080 --name nodeapp ${IMAGE_URL_WITH_TAG}"
                 }
             }
-        }
+        } */
     }
 }
 

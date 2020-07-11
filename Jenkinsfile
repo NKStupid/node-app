@@ -6,6 +6,12 @@ pipeline {
         IMAGE_URL_WITH_TAG = "suizhidaidev/node-app:${DOCKER_TAG}"
     }
     stages{
+	stage('SCM - Checkout'){
+		steps{
+			git url: 'https://github.com/NKStupid/node-app'
+
+		}
+	}
         stage('Build Docker Image'){
             steps{
                 sh "docker build . -t ${IMAGE_URL_WITH_TAG}"

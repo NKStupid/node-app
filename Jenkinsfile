@@ -26,6 +26,21 @@ pipeline {
                 }
             }
         }
+	stage('Deploy to k8s'){
+		steps{
+			sshagent(['kubeClient']) {
+			    // some block                    
+			sh """
+				scp -o StrictHostKeyChecking=no service.yml chenkiegcp2@i3.chenkiegcp2.chensiyi.dev:/home/chenkiegcp2
+
+
+			    """
+				
+				// ssh -o StrictHostKeyChecking=no chenkiegcp3@tomcat.chensiyi.co /opt/tomcat8/bin/shutdown.sh
+				// ssh -o StrictHostKeyChecking=no chenkiegcp3@tomcat.chensiyi.co /opt/tomcat8/bin/startup.sh
+			}
+		}
+	}	    
         /* stage('Docker Deploy Dev'){
             steps{
                 sshagent(['tomcat-dev']) {

@@ -31,7 +31,7 @@ pipeline {
 			sshagent(['kubeClient']) {
 			    // some block                    
 			sh """
-				scp -o StrictHostKeyChecking=no service.yml chenkiegcp2@i3.chenkiegcp2.chensiyi.dev:/home/chenkiegcp2
+				scp -o StrictHostKeyChecking=no services.yml chenkiegcp2@i3.chenkiegcp2.chensiyi.dev:/home/chenkiegcp2
 
 
 			    """

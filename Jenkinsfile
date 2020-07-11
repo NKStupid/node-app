@@ -8,7 +8,7 @@ pipeline {
     stages{
 	stage('SCM - Checkout'){
 		steps{
-			git url: 'https://github.com/NKStupid/node-app',
+			git url: 'https://github.com/NKStupid/node-app'
             		//branch: 'joseph'
 		}
 	}

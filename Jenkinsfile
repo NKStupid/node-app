@@ -9,7 +9,7 @@ pipeline {
 	stage('SCM - Checkout'){
 		steps{
 			git url: 'https://github.com/NKStupid/node-app',
-            		branch: 'joseph'
+            		//branch: 'joseph'
 		}
 	}
         stage('Build Docker Image'){

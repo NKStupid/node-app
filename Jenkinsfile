@@ -11,7 +11,7 @@ pipeline {
                 sh "docker build . -t ${IMAGE_URL_WITH_TAG}"
             }
         }
-        stage('Nexus Push'){
+        stage('Dockerhub Push'){
             steps{
 		    
                 withCredentials([string(credentialsId: 'suizhidaidev', variable: 'dockerhubPwd')]) {

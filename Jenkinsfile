@@ -30,7 +30,7 @@ pipeline {
 		steps{
 			sh "chmod +x changeTag.sh"
 			sh "./changeTag.sh ${DOCKER_TAG}"
-			kubernetesDeploy configs: 'node-app-pod.yml', kubeConfig: [path: ''], kubeconfigId: 'KUBERNETES_CLUSTER_CONFIG', secretName: '', ssh: [sshCredentialsId: '*', sshServer: ''], textCredentials: [certificateAuthorityData: '', clientCertificateData: '', clientKeyData: '', serverUrl: 'https://']
+			kubernetesDeploy configs: 'node-app-pod.yml', kubeConfig: [path: 'config'], kubeconfigId: 'KUBERNETES_CLUSTER_CONFIG', secretName: '', ssh: [sshCredentialsId: '*', sshServer: ''], textCredentials: [certificateAuthorityData: '', clientCertificateData: '', clientKeyData: '', serverUrl: 'https://']
 		}
 	}	    
 

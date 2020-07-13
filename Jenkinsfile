@@ -31,7 +31,7 @@ pipeline {
 			sh "chmod +x changeTag.sh"
 			sh "./changeTag.sh ${DOCKER_TAG}"
 			kubernetesDeploy(
-			    configs: 'node-app-pod.yml',
+			    configs: 'springBootMongo.yml',
 		  	    kubeconfigId: 'KUBERNETES_CLUSTER_CONFIG',
 			    enableConfigSubstitution: true
 			)

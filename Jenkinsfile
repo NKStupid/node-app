@@ -34,10 +34,10 @@ pipeline {
 			    // some block                    
 			sh """
 				scp -o StrictHostKeyChecking=no services.yml node-app-pod.yml chenkiegcp2@i3.chenkiegcp2.chensiyi.dev:/home/chenkiegcp2/kube-manifest
-				//ssh chenkiegcp2@i3.chenkiegcp2.chensiyi.dev kubectl delete pod/nodeapp
 				ssh chenkiegcp2@i3.chenkiegcp2.chensiyi.dev kubectl apply -f /home/chenkiegcp2/kube-manifest/
 
 			    """
+				//ssh chenkiegcp2@i3.chenkiegcp2.chensiyi.dev kubectl delete pod/nodeapp
 				
 				// ssh -o StrictHostKeyChecking=no chenkiegcp3@tomcat.chensiyi.co /opt/tomcat8/bin/shutdown.sh
 				// ssh -o StrictHostKeyChecking=no chenkiegcp3@tomcat.chensiyi.co /opt/tomcat8/bin/startup.sh

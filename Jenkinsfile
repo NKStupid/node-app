@@ -30,13 +30,7 @@ pipeline {
 		steps{
 			sh "chmod +x changeTag.sh"
 			sh "./changeTag.sh ${DOCKER_TAG}"
-			sshagent(['kubeClient']) {
-			    // some block                    
-			sh """
-				scp -o StrictHostKeyChecking=no services.yml node-app-pod.yml chenkiegcp2@i3.chenkiegcp2.chensiyi.dev:/home/chenkiegcp2/kube-manifest
-				ssh chenkiegcp2@i3.chenkiegcp2.chensiyi.dev kubectl apply -f /home/chenkiegcp2/kube-manifest/
-			    """
-			}
+			kubernetesDeploy configs: 'node-app-pod.yml', kubeConfig: [path: ''], kubeconfigId: 'KUBERNETES_CLUSTER_CONFIG', secretName: '', ssh: [sshCredentialsId: '*', sshServer: ''], textCredentials: [certificateAuthorityData: '', clientCertificateData: '', clientKeyData: '', serverUrl: 'https://']
 		}
 	}	    
 

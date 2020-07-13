@@ -30,11 +30,11 @@ pipeline {
 		steps{
 			sh "chmod +x changeTag.sh"
 			sh "./changeTag.sh ${DOCKER_TAG}"
-			kubernetesDeploy{
+			/* kubernetesDeploy{
 			    configs: 'node-app-pod.yml',
 		  	    kubeconfigId: 'KUBERNETES_CLUSTER_CONFIG',
 			    enableConfigSubstitution: true
-			}
+			} */
 		}
 	}	    
 

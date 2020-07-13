@@ -9,7 +9,7 @@ pipeline {
 	stage('SCM - Checkout'){
 		steps{
 			git url: 'https://github.com/NKStupid/node-app'
-
+            		//branch: 'joseph'
 		}
 	}
         stage('Build Docker Image'){
@@ -26,19 +26,16 @@ pipeline {
                 }
             }
         }
-        /* stage('Docker Deploy Dev'){
-            steps{
-                sshagent(['tomcat-dev']) {
-                    withCredentials([string(credentialsId: 'nexus-pwd', variable: 'nexusPwd')]) {
-                        sh "ssh ec2-user@172.31.0.38 docker login -u admin -p ${nexusPwd} ${NEXUS_URL}"
-                    }
-					// Remove existing container, if container name does not exists still proceed with the build
-					sh script: "ssh ec2-user@172.31.0.38 docker rm -f nodeapp",  returnStatus: true
-                    
-                    sh "ssh ec2-user@172.31.0.38 docker run -d -p 8080:8080 --name nodeapp ${IMAGE_URL_WITH_TAG}"
-                }
-            }
-        } */
+	stage('Deploy to k8s'){
+		steps{
+			sh "chmod +x changeTag.sh"
+			sh "./changeTag.sh ${DOCKER_TAG}"
+			sshagent(['kubeClient']) {
+			    // some block                    
+			sh """
+				scp -o StrictHostKeyChecking=no services.yml node-app-pod.yml chenkiegcp2@i3.chenkiegcp2.chensiyi.dev:/home/chenkiegcp2/kube-manifest
+				ssh chenkiegcp2@i3.chenkiegcp2.chensiyi.dev kubectl apply -f /home/chenkiegcp2/kube-manifest/
+			    """
     }
 }
 
